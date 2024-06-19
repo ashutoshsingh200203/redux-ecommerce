@@ -54,7 +54,8 @@ export const addUser=(user:Omit<register,"id">):Promise<void>=>{
 
 export const getUser = (email : string) : Promise<register> =>{
   return new Promise((resolve,reject)=>{
-     const request = db.transaction(Stores.Users).objectStore(Stores.Users).get(`${email}`)
+    console.log(db)
+     const request = db.transaction(Stores.Users).objectStore(Stores.Users).get(email)
      request.onsuccess=()=>{
          console.log(`User get with the email ${request.result}`);
          const updated = request.result ;

@@ -5,15 +5,17 @@ import { Controller} from "react-hook-form"
 import { Button, TextField } from "@mui/material"
 import { schema1 } from "../schema"
 import { addUser, initDB } from "../database"
-
-
+import { Link, useNavigate } from "react-router-dom"
 
 
 const Register = () => {
   const { control, formState: { errors }, handleSubmit } = useForm<register>({ resolver: yupResolver<register>(schema1), mode: 'onChange' })
+
+  const navigate = useNavigate()
   const onSubmit: SubmitHandler<register> = async (data) => {
     await initDB()
     await addUser(data)
+    navigate('/login')
     console.log(data);
   }
 
@@ -53,7 +55,8 @@ const Register = () => {
             defaultValue=""
             render={({ field }) => <TextField {...field} label="Password" margin='dense' error={!!errors.password} helperText={errors.password ? errors.password.message : ''} />}
           />
-            < Button type="submit"  variant="contained" >Submit</Button>
+          <p>Already Register Please <Link to='/login'>Login</Link></p>
+            < Button type="submit" sx={{display : 'block'}} variant="contained" >Submit</Button>
  
         </div>
       </form>
