@@ -6,12 +6,15 @@ import { Button, TextField } from "@mui/material"
 import { schema2 } from "../schema"
 import { getUser, initDB } from "../database"
 import { Link, useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { setAuth } from "../redux/slices/authSlice"
 
 
 
 const Login = () => {
   const { control, formState: { errors }, handleSubmit } = useForm<register>({ resolver: yupResolver<register>(schema2), mode: 'onChange' })
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const onSubmit: SubmitHandler<register> = async (data) => {
     await initDB()
@@ -22,7 +25,8 @@ const Login = () => {
           {
             console.log("Login successfully")
             localStorage.setItem('email',`${result.email}`)
-            navigate('/')
+            dispatch(setAuth())
+            // navigate('/')
           }
           else{
             console.log("Invalid username or password")
