@@ -4,8 +4,8 @@ import { products } from '../interface';
 import {CardActions,Card,Box,Grid,CardContent,CardMedia , Button, Typography } from '@mui/material';
 import Navbar from './Navbar';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
-import { useSelector, useDispatch } from "react-redux";
-import { add, remove } from '../redux/slices/cartSlice';
+import { useDispatch } from "react-redux";
+import { add } from '../redux/slices/cartSlice';
 
 
 const Home = () => {
@@ -58,7 +58,7 @@ const Home = () => {
                     </Typography> */}
                   </CardContent>
                   <CardActions>
-                    <Button variant='contained' size='medium' onClick={()=>dispatch(add(data))} >Add to Cart</Button>
+                    <Button variant='contained' size='medium' onClick={()=>dispatch(add({...data , quantity : 1 , total : data.price}))} >Add to Cart</Button>
                   </CardActions>
                 </Card>
               </Grid>

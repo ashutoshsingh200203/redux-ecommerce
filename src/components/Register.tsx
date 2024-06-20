@@ -10,7 +10,6 @@ import { Link, useNavigate } from "react-router-dom"
 
 const Register = () => {
   const { control, formState: { errors }, handleSubmit } = useForm<register>({ resolver: yupResolver<register>(schema1), mode: 'onChange' })
-
   const navigate = useNavigate()
   const onSubmit: SubmitHandler<register> = async (data) => {
     await initDB()
