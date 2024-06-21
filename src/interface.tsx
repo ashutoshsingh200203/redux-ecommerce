@@ -18,9 +18,27 @@ export interface products {
   title : string,
   price : number,
   description : string,
-  category : string,
-  image : string ,
-  rating : {rate : number , count : number},
+  category : {id : number, name : string , image : string , creationAt : string , updatedAt : string},
+  images : string[] ,
+  // rating : {rate : number , count : number},
   quantity : number ,
   total : number
 }
+
+export interface dbProduct {
+  product : products[],
+  email : string | undefined
+}
+
+export interface productStart {
+  id : number,
+  title : string,
+  price : number,
+  description : string,
+  category : {id : number, name : string , image : string , creationAt : string , updatedAt : string},
+  images : string[] ,
+  // rating : {rate : number , count : number},
+  // quantity : number ,
+  // total : number
+}
+

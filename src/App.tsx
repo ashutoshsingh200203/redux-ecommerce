@@ -6,6 +6,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import { useSelector } from 'react-redux'
 import { RootState } from './redux/store'
+import './App.css'
 
 
 function App() {
@@ -16,8 +17,8 @@ function App() {
 
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={authes.authenticated ? <Home /> : <Login/>}></Route>
-        <Route path='/cart' element={authes.authenticated ? <Cart/> : <Login/>} ></Route>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/cart' element={<Cart/>} ></Route>
         <Route path='*' element={<Notfound />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>

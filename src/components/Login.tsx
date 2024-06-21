@@ -26,7 +26,7 @@ const Login = () => {
             console.log("Login successfully")
             localStorage.setItem('email',`${result.email}`)
             dispatch(setAuth())
-            // navigate('/')
+            navigate('/')
           }
           else{
             console.log("Invalid username or password")
