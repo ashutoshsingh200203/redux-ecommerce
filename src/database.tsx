@@ -7,9 +7,6 @@ export enum Stores{
     cartProduct = "products"
 } 
 
-
-
-
 export const initDB=():Promise<IDBDatabase>=>{
   return new Promise((resolve,reject)=>{
       const request=indexedDB.open("shopify",1);
@@ -44,7 +41,22 @@ export const initDB=():Promise<IDBDatabase>=>{
   })
 }
 
-export const addProducts = (data : Omit<dbProduct,"email">) : Promise<void> =>{
+export const addProducts = (data : Omit<dbProduct,"email">) : Promise<number> =>{
+    return new Promise((resolve,reject)=>{
+        const transaction=db.transaction(Stores.cartProduct,"readwrite");
+        const store=transaction.objectStore(Stores.cartProduct)
+        const request=store.add(data);
+        request.onsuccess=()=>{
+            console.log(`data added with email ${request.result}`);
+            resolve(1) 
+        }
+        request.onerror=()=>{
+            resolve(-1)
+        }
+    })
+}
+
+export const updateProducts = (data : Omit<dbProduct,"email">) : Promise<void> =>{
     return new Promise((resolve,reject)=>{
         const transaction=db.transaction(Stores.cartProduct,"readwrite");
         const store=transaction.objectStore(Stores.cartProduct)
@@ -58,6 +70,7 @@ export const addProducts = (data : Omit<dbProduct,"email">) : Promise<void> =>{
         }
     })
 }
+
 
 export const getProducts = (email : string) : Promise<dbProduct> =>{
     return new Promise((resolve,reject)=>{

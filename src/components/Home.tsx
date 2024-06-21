@@ -12,6 +12,17 @@ const Home = () => {
   const result : productStart[] = storeData
   const dispatch = useDispatch() ;
 
+  const handleAdd = (data : productStart) =>{
+    try {
+      const email1 : string | null = localStorage.getItem('email')
+      console.log(data)
+      console.log(email1)
+      dispatch(add({...data , quantity : 1 , total : data.price}))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div>
       <Navbar/>
@@ -37,7 +48,7 @@ const Home = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button variant='contained' size='medium' sx={{margin:'auto'}} onClick={()=>dispatch(add({...data , quantity : 1 , total : data.price}))} >Add to Cart</Button>
+                    <Button variant='contained' size='medium' sx={{margin:'auto'}} onClick={()=>handleAdd(data)} >Add to Cart</Button>
                   </CardActions>
                 </Card>
               </Grid>

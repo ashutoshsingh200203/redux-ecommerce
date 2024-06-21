@@ -4,10 +4,12 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { Controller} from "react-hook-form"
 import { Button, TextField } from "@mui/material"
 import { schema2 } from "../schema"
-import { getUser, initDB } from "../database"
+import { getProducts, getUser, initDB } from "../database"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { setAuth } from "../redux/slices/authSlice"
+import { setStart } from "../redux/slices/cartSlice"
+
 
 
 
@@ -22,10 +24,18 @@ const Login = () => {
     if(result)
     {
           if(result.password === data.password)
-          {
+          { 
             console.log("Login successfully")
             localStorage.setItem('email',`${result.email}`)
             dispatch(setAuth())
+            await initDB()
+            const newdata = await getProducts(result.email)
+
+            console.log(newdata)
+            if(newdata)
+            { 
+                dispatch(setStart(newdata.product))
+            }
             navigate('/')
           }
           else{
