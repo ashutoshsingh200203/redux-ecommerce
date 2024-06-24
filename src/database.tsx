@@ -60,7 +60,7 @@ export const updateProducts = (data : Omit<dbProduct,"email">) : Promise<void> =
     return new Promise((resolve,reject)=>{
         const transaction=db.transaction(Stores.cartProduct,"readwrite");
         const store=transaction.objectStore(Stores.cartProduct)
-        const request=store.add(data);
+        const request=store.put(data);
         request.onsuccess=()=>{
             console.log(`data added with email ${request.result}`);
             resolve() 
