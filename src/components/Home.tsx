@@ -11,7 +11,7 @@ import toast, { Toaster } from 'react-hot-toast';
 const Home = () => {
 
   const result: productStart[] = storeData
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const handleAdd = (data: productStart) => {
     try {

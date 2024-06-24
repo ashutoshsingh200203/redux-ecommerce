@@ -87,6 +87,20 @@ export const getProducts = (email : string) : Promise<dbProduct> =>{
     })
   }
 
+//   export const deleteProducts = (email : string) : Promise<void> =>{
+//     return new Promise((resolve,reject)=>{
+//       console.log(db)
+//        const request = db.transaction(Stores.cartProduct).objectStore(Stores.cartProduct).delete(email)
+//        request.onsuccess=()=>{
+//            console.log(`Products get with the email ${request.result}`);
+//            resolve()
+//        }
+//        request.onerror=()=>{
+//            reject(request.error)
+//        }
+//     })
+//   }
+
 export const addUser=(user:Omit<register,"id">):Promise<void>=>{
   return new Promise((resolve,reject)=>{
       const transaction=db.transaction(Stores.Users,"readwrite");

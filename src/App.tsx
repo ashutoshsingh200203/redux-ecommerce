@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux'
 import { RootState } from './redux/store'
 import './App.css'
 import Checkout from './components/Checkout'
+import ProtectedRoute from './auth/ProtectedRoute'
+import LoginProtection from './auth/LoginProtection'
 
 
 function App() {
@@ -21,9 +23,9 @@ function App() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/cart' element={<Cart/>} ></Route>
         <Route path='*' element={<Notfound />}></Route>
-        <Route path='/login' element={authes.authenticated ? <Home/> : <Login/>}></Route>
-        <Route path='/register' element={authes.authenticated ? <Home/> : <Register/>}></Route>
-        <Route path='/checkout' element={authes.authenticated  ? <Checkout /> : <Login/>}></Route>
+        <Route path='/login' element={<LoginProtection><Login/></LoginProtection>}></Route>
+        <Route path='/register' element={<LoginProtection><Register/></LoginProtection>}></Route>
+        <Route path='/checkout' element={<ProtectedRoute><Checkout/></ProtectedRoute>}></Route>
       </Routes>
     </BrowserRouter>
   )

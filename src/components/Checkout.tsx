@@ -1,8 +1,8 @@
-
+// import img = '../assests/success.jpg'
 const Checkout = () => {
   return (
     <div>
-      <h1>Checkout successfully</h1>
+      <img src="../assests/success.jpg" alt="dfsd" />
     </div>
   )
 }

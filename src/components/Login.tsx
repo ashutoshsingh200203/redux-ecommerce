@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from "react-hook-form"
-import { register } from "../interface"
+import { login } from "../interface"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Controller } from "react-hook-form"
 import { Box, Button, TextField } from "@mui/material"
@@ -9,12 +9,13 @@ import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { setAuth } from "../redux/slices/authSlice"
 import { setStart } from "../redux/slices/cartSlice"
+import { useEffect } from "react"
 
 const Login = () => {
-  const { control, formState: { errors }, handleSubmit } = useForm<register>({ resolver: yupResolver<register>(schema2), mode: 'onChange' })
+  const { control, formState: { errors }, handleSubmit } = useForm<login>({ resolver: yupResolver<login>(schema2), mode: 'onChange' })
   const dispatch = useDispatch()
   const navigate = useNavigate() 
-  const onSubmit: SubmitHandler<register> = async (data) => {
+  const onSubmit: SubmitHandler<login> = async (data) => {
     await initDB()
     let result = await getUser(data.email)
     if (result) {
@@ -48,7 +49,6 @@ const Login = () => {
     console.log(result);
   }
  
-
   return (
     <Box
       height='auto'

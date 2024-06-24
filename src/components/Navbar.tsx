@@ -46,7 +46,7 @@ const Navbar = () => {
       console.log('vijay')
       localStorage.removeItem('persist:root')
       localStorage.removeItem('email')
-      navigate('/login')  
+      navigate('/')  
     }
   }
   const ls: string | null = localStorage.getItem('email');

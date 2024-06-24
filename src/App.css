@@ -3,3 +3,13 @@ body{
   margin: 0 auto;
   max-width: 1580px;
 }
+.carts{
+  display: flex;
+}
+.checkout{
+  background-color: whitesmoke;
+  height: fit-content;
+  margin-top: 100px;
+  padding: 20px;
+  min-width: 400px;
+}
